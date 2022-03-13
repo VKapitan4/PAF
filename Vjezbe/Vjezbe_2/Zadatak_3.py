@@ -1,4 +1,6 @@
-from Vjezbe.Vjezbe_2.kinematika import kosi_hitac
+#import numpy as np
+#import matplotlib.pyplot as plt
 import kinematika as kin
 
-kosi_hitac
+kin.jednoliko_gibanje(1,10,50,60,2,45)
+kin.kosi_hitac(1,10,50,60)
