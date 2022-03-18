@@ -9,13 +9,13 @@ class Particle:
         self.vy=[]
         self.x=[]
         self.y=[]
-        self.delta_t = 0.001
 
-    def set_initial_conditions(self, v_0, kut, x_0, y_0):
+    def set_initial_conditions(self, v_0, kut, x_0, y_0, delta_t):
         self.vx.append(v_0*np.cos((kut/360)*2*np.pi))
         self.vy.append(v_0*np.sin((kut/360)*2*np.pi))
         self.x.append(x_0)
         self.y.append(y_0)
+        self.delta_t=delta_t
 
     def reset(self):
         self.vx=[]
@@ -40,3 +40,19 @@ class Particle:
             self.__move()
         plt.plot(self.x, self.y)
         plt.show()
+    
+    def total_time(self):
+        vrijeme=0
+        while self.y[-1]>self.y[0] or len(self.y)==1:
+            self.__move()
+            vrijeme += self.delta_t
+        return vrijeme
+    
+    def max_speed(self):
+        while self.y[-1]>self.y[0] or len(self.y)==1:
+            self.__move()
+        v=[]
+        for i in range(0,len(self.vx)):
+            v.append(np.sqrt(self.vx[i]**2 + self.vy[i]**2))
+        max_brzina = np.max(v)
+        return max_brzina
