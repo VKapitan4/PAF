@@ -36,5 +36,7 @@ class Particle:
         return domet
     
     def plot_trajectory(self):
+        while self.y[-1]>self.y[0] or len(self.y)==1:
+            self.__move()
         plt.plot(self.x, self.y)
         plt.show()
