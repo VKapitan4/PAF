@@ -39,6 +39,8 @@ class Particle:
         while self.y[-1]>self.y[0] or len(self.y)==1:
             self.__move()
         plt.plot(self.x, self.y)
+        plt.xlabel("x(m)")
+        plt.ylabel("y(m)")
         plt.show()
     
     def total_time(self):

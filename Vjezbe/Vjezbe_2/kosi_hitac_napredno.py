@@ -26,6 +26,8 @@ def kosi_hitac_crtanje(m,v_0,kut_v_0):
         y.append(y_0 + v_y[i] * t[i])
 
     plt.plot(x,y)
+    plt.xlabel("x(m)")
+    plt.ylabel("y(m)")
     plt.show()
 
 def kosi_hitac_maksimalna_visina(m,v_0,kut_v_0):

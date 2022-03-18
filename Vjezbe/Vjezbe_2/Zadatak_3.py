@@ -1,5 +1,3 @@
-#import numpy as np
-#import matplotlib.pyplot as plt
 import kinematika as kin
 
 kin.jednoliko_gibanje(1,10,50,60,2,45)

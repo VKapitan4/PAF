@@ -16,11 +16,25 @@ def fun(F,m):
         a.append(F/m)
         v.append(v_0+a[t.index(i)]*i)
         x.append(x_0+v[t.index(i)]*i)
+
+    plt.figure(figsize=(10,7))
+
+    plt.subplot(2,2,1)
     plt.plot(t,a)
-    plt.show()
+    plt.xlabel("t(s)")
+    plt.ylabel("a(m/s^2)")
+
+    plt.subplot(2,2,2)
     plt.plot(t,v)
-    plt.show()
+    plt.xlabel("t(s)")
+    plt.ylabel("v(m/s)")
+
+    plt.subplot(2,2,3)
     plt.plot(t,x)
+    plt.xlabel("t(s)")
+    plt.ylabel("x(m)")
+    
+    plt.tight_layout()
     plt.show()
 
 fun(10,10)
