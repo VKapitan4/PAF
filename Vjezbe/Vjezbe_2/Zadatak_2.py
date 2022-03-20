@@ -26,18 +26,18 @@ def fun(v_0,kut):
 
     plt.subplot(2,2,1)
     plt.plot(x,y)
-    plt.xlabel("x(m)")
-    plt.ylabel("y(m)")
+    plt.xlabel("$x(m)$")
+    plt.ylabel("$y(m)$")
 
     plt.subplot(2,2,2)
     plt.plot(t,x)
-    plt.xlabel("t(s)")
-    plt.ylabel("x(m)")
+    plt.xlabel("$t(s)$")
+    plt.ylabel("$x(m)$")
 
     plt.subplot(2,2,3)
     plt.plot(t,y)
-    plt.xlabel("t(s)")
-    plt.ylabel("y(m)")
+    plt.xlabel("$t(s)$")
+    plt.ylabel("$y(m)$")
 
     plt.tight_layout()
     plt.show()

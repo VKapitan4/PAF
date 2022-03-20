@@ -28,18 +28,18 @@ def jednoliko_gibanje(m,delta_t,v_0,kut_v_0,F,kut_F):
 
     plt.subplot(2,2,1)
     plt.plot(x,y)
-    plt.xlabel("x(m)")
-    plt.ylabel("y(m)")
+    plt.xlabel("$x(m)$")
+    plt.ylabel("$y(m)$")
 
     plt.subplot(2,2,2)
     plt.plot(t,x)
-    plt.xlabel("t(s)")
-    plt.ylabel("x(m)")
+    plt.xlabel("$t(s)$")
+    plt.ylabel("$x(m)$")
 
     plt.subplot(2,2,3)
     plt.plot(t,y)
-    plt.xlabel("t(s)")
-    plt.ylabel("y(m)")
+    plt.xlabel("$t(s)$")
+    plt.ylabel("$y(m)$")
 
     plt.tight_layout()
     plt.show()
@@ -71,18 +71,18 @@ def kosi_hitac(m,delta_t,v_0,kut_v_0):
 
     plt.subplot(2,2,1)
     plt.plot(x,y)
-    plt.xlabel("x(m)")
-    plt.ylabel("y(m)")
+    plt.xlabel("$x(m)$")
+    plt.ylabel("$y(m)$")
 
     plt.subplot(2,2,2)
     plt.plot(t,x)
-    plt.xlabel("t(s)")
-    plt.ylabel("x(m)")
+    plt.xlabel("$t(s)$")
+    plt.ylabel("$x(m)$")
 
     plt.subplot(2,2,3)
     plt.plot(t,y)
-    plt.xlabel("t(s)")
-    plt.ylabel("y(m)")
+    plt.xlabel("$t(s)$")
+    plt.ylabel("$y(m)$")
 
     fig.tight_layout()
     plt.show()
