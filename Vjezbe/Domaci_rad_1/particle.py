@@ -42,3 +42,28 @@ class Particle:
         plt.xlabel("$x(m)$")
         plt.ylabel("$y(m)$")
         plt.show()
+    
+    def total_time(self):
+        vrijeme=0
+        while self.y[-1]>self.y[0] or len(self.y)==1:
+            self.__move()
+            vrijeme += self.delta_t
+        return vrijeme
+    
+    def max_speed(self):
+        while self.y[-1]>self.y[0] or len(self.y)==1:
+            self.__move()
+        v=[]
+        for i in range(0,len(self.vx)):
+            v.append(np.sqrt(self.vx[i]**2 + self.vy[i]**2))
+        max_brzina = np.max(v)
+        return max_brzina
+
+    def velocity_to_hit_target(self, kut, meta_x, meta_y, r):
+        for v_0 in np.arange(0,100,0.01):
+            self.set_initial_conditions(v_0, kut, 0, 0, 0.001)
+            while self.y[-1]>self.y[0] or len(self.y)==1:
+                self.__move()
+                if np.sqrt((self.x[-1]-meta_x)**2 + (self.y[-1]-meta_y)**2) < r:
+                    return np.sqrt(self.vx[-1]**2 + self.vy[-1]**2)
+
