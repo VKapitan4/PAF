@@ -1,15 +1,23 @@
-def derivacija_u_tocki(fun, x):
-    delta_x=0.001
-    d = (fun(x+delta_x)-fun(x-delta_x))/(2*delta_x)
+import numpy as np
+
+def derivacija_3_point(fun, x, dx=0.001):
+    d = (fun(x+dx)-fun(x-dx))/(2*dx)
     return d
 
-def derivacija(fun, pocetak_x, kraj_x):
+def derivacija_2_point(fun, x, dx=0.001):
+    d = (fun(x+dx)-fun(x))/(dx)
+    return d
+
+def derivacija_na_rasponu(fun, pocetak_x, kraj_x, dx=0.001, m=0):
     raspon_x = kraj_x - pocetak_x
-    delta_x = raspon_x/1000
     x = []
-    dx = []
-    for i in range(pocetak_x, kraj_x):
-        x.append(pocetak_x + )
+    d = []
+    N = int(np.floor(raspon_x/dx))+1
+    for i in range(0,N):
+        x.append(pocetak_x + i*dx)
     for i in x:
-        dx.append(derivacija_u_tocki(fun, delta_x*i))
-    return x, dx
+        if m==0:
+            d.append(derivacija_3_point(fun, i, dx))
+        elif m==1:
+            d.append(derivacija_2_point(fun, i, dx))
+    return x, d
