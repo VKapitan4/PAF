@@ -14,5 +14,5 @@ for i in np.arange(0.001, 0.1, 0.001):
 
 plt.plot(np.arange(0.001, 0.1, 0.001), relativna_pogreska)
 plt.xlabel("dt(s)")
-plt.ylabel("apsoluna relativna pogreska (%)")
+plt.ylabel("apsolutna relativna pogreska (%)")
 plt.show()

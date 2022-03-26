@@ -61,9 +61,18 @@ class Particle:
 
     def velocity_to_hit_target(self, kut, meta_x, meta_y, r):
         for v_0 in np.arange(0,100,0.01):
-            self.set_initial_conditions(v_0, kut, 0, 0, 0.001)
+            self.set_initial_conditions(v_0, kut, 0, 0, 0.01)
             while self.y[-1]>self.y[0] or len(self.y)==1:
                 self.__move()
-                if np.sqrt((self.x[-1]-meta_x)**2 + (self.y[-1]-meta_y)**2) < r:
-                    return np.sqrt(self.vx[-1]**2 + self.vy[-1]**2)
+                if np.sqrt((self.x[-1]-meta_x)**2 + (self.y[-1]-meta_y)**2) <= r:
+                    return v_0
+            self.reset()
 
+    def angle_to_hit_target(self, v_0, meta_x, meta_y, r):
+        for kut in np.arange(0,90,0.01):
+            self.set_initial_conditions(v_0, kut, 0, 0, 0.01)
+            while self.y[-1]>self.y[0] or len(self.y)==1:
+                self.__move()
+                if np.sqrt((self.x[-1]-meta_x)**2 + (self.y[-1]-meta_y)**2) <= r:
+                    return kut
+            self.reset()
