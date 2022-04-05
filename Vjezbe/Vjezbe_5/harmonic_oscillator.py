@@ -30,10 +30,10 @@ class HarmonicOscillator:
         self.t=[0]
 
     def __move(self):
-        self.F.append(-self.k*self.x[-1])
-        self.a.append(self.F[-1]/self.m)
         self.v.append(self.v[-1]+self.a[-1]*self.dt)
         self.x.append(self.x[-1]+self.v[-1]*self.dt)
+        self.F.append(-self.k*self.x[-1])
+        self.a.append(self.F[-1]/self.m)
 
     def plot_trajectory(self):
         self.t.pop(0)
