@@ -8,6 +8,7 @@ class Particle {
 
     private:
         void move();
+        float _t;
         float _dt;
         float _x;
         float _y;
