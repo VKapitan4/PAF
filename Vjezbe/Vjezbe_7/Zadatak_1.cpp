@@ -2,6 +2,8 @@
 #include <Particle.h>
 
 int main(){
-    Particle a(1,2,3,4);
+    Particle p1(0,0,10,60);
+    p1.range();
+    p1.time();
     return 0;
 }
