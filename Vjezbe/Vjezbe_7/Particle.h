@@ -16,6 +16,7 @@ class Particle {
         float _vy;
         float _ax;
         float _ay;
+        float _x0;
         float _y0;
 
 };

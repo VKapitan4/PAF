@@ -11,6 +11,7 @@ Particle::Particle(float x0, float y0, float v0, float kut){
     _vy=v0*sin((kut/360)*2*3.1416);
     _x=x0;
     _y=y0;
+    _x0=x0;
     _y0=y0;
 }
 
@@ -19,12 +20,13 @@ Particle::~Particle(){
 }
 
 float Particle::range(){
-    _y=_y0;
-    while(_y >= _y0){
-        move();
+    if (_t==0){
+        while(_y >= _y0){
+            move();
+        }
     }
-    std::cout <<"domet: "<< _x <<  std::endl;
-    return _x;
+    std::cout <<"domet: "<< _x-_x0 <<  std::endl;
+    return _x-_x0;
 }
 
 void Particle::move(){
@@ -36,9 +38,10 @@ void Particle::move(){
 }
 
 float Particle::time(){
-    _y=_y0;
-    while(_y >= _y0){
-        move();
+    if (_t==0){
+        while(_y >= _y0){
+            move();
+        }
     }
     std::cout <<"vrijeme: "<< _t <<  std::endl;
     return _t;
