@@ -47,22 +47,22 @@ class Projectile:
         self.x.append( self.x[-1] + self.vx[-1]*self.delta_t )
         self.y.append( self.y[-1] + self.vy[-1]*self.delta_t )
 
-    def _a(self, ):
-        ax = -np.sign()
-        ay = 
-        return np.sqrt(()**2 + ()**2)
+    def _a(self, _vx, _vy):
+        cos_kuta = _vx/(_vx**2 + _vy**2)
+        sin_kuta = _vy/(_vx**2 + _vy**2)
+        ax = -np.sign(self._vx) * cos_kuta * self._v_squared(_vx,_vy) * (self.rho*self.Cd*self.A)/(2*self.m)
+        ay = -9.81 -np.sign(self._vy) * sin_kuta * self._v_squared(_vx,_vy) * (self.rho*self.Cd*self.A)/(2*self.m)
+        return np.sqrt((ax)**2 + (ay)**2)
 
-    def _v(self, _vx, _vy):
+    def _v_squared (self, _vx, _vy):
         return ((self._vx)**2 + (self._vy)**2)
 
     def __move_runge_kutta(self):
-        a_square = (self.ax[-1])**2 + (self.ay[-1])**2
-        v_square = (self.vx[-1])**2 + (self.vy[-1])**2
 
-        k_1v = np.sqrt(a_square) * self.delta_t
-        k_1x = np.sqrt(v_square) * self.delta_t
+        k_1v = self._a(self.vx[-1],self.vy[-1]) * self.delta_t
+        k_1x = np.sqrt(self._v_squared(self.vx[-1], self.vy[-1])) * self.delta_t
 
-        k_2v = -np.sign(self.vx[-1])*((self.rho*self.Cd*self.A)/(2*self.m))*((self.vx[-1])**2+(self.vy[-1])**2)
+        k_2v = self._a(self.vx[-1]+np.cos())
 
     def range(self):
         while self.y[-1]>self.y[0] or len(self.y)==1:
