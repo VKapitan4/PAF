@@ -6,7 +6,7 @@
 using namespace std;
 
 HarmonicOscillator::HarmonicOscillator(float x0, float v0, float m, float k, float vrijeme){
-    _dt = 0.01;
+    _dt = 0.1;
     _vrijeme = vrijeme;
     _m = m;
     _k = k;
