@@ -47,32 +47,62 @@ class Projectile:
         self.x.append( self.x[-1] + self.vx[-1]*self.delta_t )
         self.y.append( self.y[-1] + self.vy[-1]*self.delta_t )
 
-    def _a(self, _vx, _vy):
-        cos_kuta = _vx/(_vx**2 + _vy**2)
-        sin_kuta = _vy/(_vx**2 + _vy**2)
-        ax = -np.sign(self._vx) * cos_kuta * self._v_squared(_vx,_vy) * (self.rho*self.Cd*self.A)/(2*self.m)
-        ay = -9.81 -np.sign(self._vy) * sin_kuta * self._v_squared(_vx,_vy) * (self.rho*self.Cd*self.A)/(2*self.m)
-        return np.sqrt((ax)**2 + (ay)**2)
+    def __ax(self, _vx, _vy):
+        cos_kuta = _vx/np.sqrt(_vx**2 + _vy**2)
+        ax = -np.sign(_vx) * cos_kuta * self.__v_squared(_vx,_vy) * (self.rho*self.Cd*self.A)/(2*self.m)
+        return ax
 
-    def _v_squared (self, _vx, _vy):
-        return ((self._vx)**2 + (self._vy)**2)
+    def __ay(self, _vx, _vy):
+        sin_kuta = _vy/np.sqrt(_vx**2 + _vy**2)
+        ay = -9.81 -np.sign(_vy) * sin_kuta * self.__v_squared(_vx,_vy) * (self.rho*self.Cd*self.A)/(2*self.m)
+        return ay
+
+    def __v_squared (self, _vx, _vy):
+        return ((_vx)**2 + (_vy)**2)
 
     def __move_runge_kutta(self):
+        k_1vx = self.__ax(self.vx[-1], self.vy[-1]) * self.delta_t
+        k_1vy = self.__ay(self.vx[-1], self.vy[-1]) * self.delta_t
+        k_1x = self.vx[-1] * self.delta_t
+        k_1y = self.vy[-1] * self.delta_t
 
-        k_1v = self._a(self.vx[-1],self.vy[-1]) * self.delta_t
-        k_1x = np.sqrt(self._v_squared(self.vx[-1], self.vy[-1])) * self.delta_t
+        k_2vx = self.__ax(self.vx[-1]+(k_1vx/2), self.vy[-1]+(k_1vy/2)) * self.delta_t
+        k_2vy = self.__ay(self.vx[-1]+(k_1vx/2), self.vy[-1]+(k_1vy/2)) * self.delta_t
+        k_2x = (self.vx[-1] + (k_1vx/2)) * self.delta_t
+        k_2y = (self.vy[-1] + (k_1vy/2))  * self.delta_t
 
-        k_2v = self._a(self.vx[-1]+np.cos())
+        k_3vx = self.__ax(self.vx[-1]+(k_2vx/2), self.vy[-1]+(k_2vy/2)) * self.delta_t
+        k_3vy = self.__ay(self.vx[-1]+(k_2vx/2), self.vy[-1]+(k_2vy/2)) * self.delta_t
+        k_3x = (self.vx[-1] + (k_2vx/2)) * self.delta_t
+        k_3y = (self.vy[-1] + (k_2vy/2)) * self.delta_t
 
-    def range(self):
+        k_4vx = self.__ax(self.vx[-1]+k_3vx, self.vy[-1]+k_3vy) * self.delta_t
+        k_4vy = self.__ay(self.vx[-1]+k_3vx, self.vy[-1]+k_3vy) * self.delta_t
+        k_4x = (self.vx[-1] + k_3vx) * self.delta_t
+        k_4y = (self.vy[-1] + k_3vy) * self.delta_t
+
+        self.vx.append(self.vx[-1] + (k_1vx + 2*k_2vx + 2*k_3vx + k_4vx)/6)
+        self.vy.append(self.vy[-1] + (k_1vy + 2*k_2vy + 2*k_3vy + k_4vy)/6)
+
+        self.x.append(self.x[-1] + (k_1x + 2*k_2x + 2*k_3x + k_4x)/6)
+        self.y.append(self.y[-1] + (k_1y + 2*k_2y + 2*k_3y + k_4y)/6)
+
+    def range(self, method='e'):
         while self.y[-1]>self.y[0] or len(self.y)==1:
-            self.__move()
+            if method=='e':
+                self.__move()
+            elif method=='r':
+                self.__move_runge_kutta()
         domet = self.x[-1] - self.x[0]
+        print(domet)
         return domet
     
-    def plot_trajectory(self):
+    def plot_trajectory(self, method='e'):
         while self.y[-1]>self.y[0] or len(self.y)==1:
-            self.__move()
+            if method=='e':
+                self.__move()
+            elif method=='r':
+                self.__move_runge_kutta()
         plt.plot(self.x, self.y)
         plt.xlabel("$x(m)$")
         plt.ylabel("$y(m)$")
