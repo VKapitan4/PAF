@@ -18,6 +18,8 @@ class Bungee:
         self.E_elp = [0]
         self.E = [self.E_kin[0] + self.E_gp[0] + self.E_elp[0]]
         self.dt = dt
+        self.vrijeme = 60
+        self.N = int(self.vrijeme/self.dt)
 
     def restart(self):
         self.a=[-self.m * 9.81]
@@ -47,7 +49,7 @@ class Bungee:
         self.E.append(self.E_kin[-1] + self.E_gp[-1] + self.E_elp[-1])
 
     def plot_trajectory(self):
-        for i in range(0,5000):
+        for i in range(0,self.N):
             self.__move()
         plt.plot(self.t, self.h)
         plt.xlabel("$t(s)$")
@@ -55,7 +57,7 @@ class Bungee:
         plt.show()
 
     def plot_energy(self):
-        for i in range(0,5000):
+        for i in range(0,self.N):
             self.__move()
         plt.plot(self.t, self.E_kin)
         plt.xlabel("$t(s)$")

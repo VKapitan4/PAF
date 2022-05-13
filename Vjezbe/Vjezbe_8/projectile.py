@@ -54,7 +54,7 @@ class Projectile:
 
     def __ay(self, _vx, _vy):
         sin_kuta = _vy/np.sqrt(_vx**2 + _vy**2)
-        ay = -9.81 -np.sign(_vy) * sin_kuta * self.__v_squared(_vx,_vy) * (self.rho*self.Cd*self.A)/(2*self.m)
+        ay = -9.81 -(np.sign(_vy) * sin_kuta * self.__v_squared(_vx,_vy) * (self.rho*self.Cd*self.A)/(2*self.m))
         return ay
 
     def __v_squared (self, _vx, _vy):

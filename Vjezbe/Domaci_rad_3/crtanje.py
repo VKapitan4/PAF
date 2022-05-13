@@ -27,18 +27,6 @@ for i in a_strings:
 def fun(t):
     return 5*np.cos(np.sqrt(5/10)*t)+(2/np.sqrt(5/10))*np.sin(np.sqrt(5/10)*t)
 
-#x_analiticki = []
-#for i in t:
-#    x_analiticki.append(fun(i))
-
-#plt.figure(figsize=(12,3))
-#plt.plot(t, x_analiticki, zorder=0, color='blue')
-#plt.scatter(t, x, s=5, color='red')
-#plt.xlabel("$t(s)$")
-#plt.ylabel("$x(m)$")
-#plt.tight_layout()
-#plt.show()
-
 plt.figure(figsize=(10,7))
 
 plt.subplot(3,1,1)
@@ -57,4 +45,5 @@ plt.xlabel("$t(s)$")
 plt.ylabel("$a(m)$")
 
 plt.tight_layout()
+plt.savefig('Oscillator.png')
 plt.show()
