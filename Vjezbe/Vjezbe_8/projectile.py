@@ -94,7 +94,6 @@ class Projectile:
             elif method=='r':
                 self.__move_runge_kutta()
         domet = self.x[-1] - self.x[0]
-        print(domet)
         return domet
     
     def plot_trajectory(self, method='e'):

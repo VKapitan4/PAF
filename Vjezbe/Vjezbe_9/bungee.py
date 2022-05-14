@@ -21,10 +21,15 @@ class Bungee:
         self.vrijeme = 60
         self.N = int(self.vrijeme/self.dt)
 
-    def restart(self):
+    def reset(self):
+        self.t=[0]
         self.a=[-self.m * 9.81]
         self.v=[self.v0]
         self.h=[self.h0]
+        self.E_kin = [(self.m * self.v0**2)/2]
+        self.E_gp = [self.m * 9.81 * self.h0]
+        self.E_elp = [0]
+        self.E = [self.E_kin[0] + self.E_gp[0] + self.E_elp[0]]
 
     def __F_el(self, k, h):
         if h < self.h0 - self.l0:
