@@ -26,7 +26,7 @@ for i in range(1, 501):
     p1.reset()
 
 plt.plot(Cd, domet1)
-plt.xlabel("$Cd()$")
+plt.xlabel("$Cd$")
 plt.ylabel("$domet(m)$")
 plt.show()
 
