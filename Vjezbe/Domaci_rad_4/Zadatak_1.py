@@ -3,8 +3,8 @@ import matplotlib.pyplot as plt
 import projectile as pro
 
 p1 = pro.Projectile()
-p1.set_initial_conditions(10, 45, 0, 0, 5, 1.5, "kocka", 2, 0.5, 0.01)
-p1.plot_trajectory('r')
+p1.set_initial_conditions(10, 45, 0, 0, 5, 1.5, "kocka", 0.39894, 10, 0.01)
+p1.range('r')
 print("domet kocke:")
 print(p1.x[-1])
 x_kocka = p1.x
@@ -12,8 +12,8 @@ y_kocka = p1.y
 p1.reset()
 
 p2 = pro.Projectile()
-p2.set_initial_conditions(10, 45, 0, 0, 5, 1.5, "kugla", 2, 0.5, 0.01)
-p2.plot_trajectory('r')
+p2.set_initial_conditions(10, 45, 0, 0, 5, 1.5, "kugla", 0.39894, 10, 0.01)
+p2.range('r')
 print("domet kugle:")
 print(p2.x[-1])
 x_kugla = p2.x

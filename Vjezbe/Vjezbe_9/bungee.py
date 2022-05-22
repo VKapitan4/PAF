@@ -60,14 +60,16 @@ class Bungee:
         plt.xlabel("$t(s)$")
         plt.ylabel("$h(m)$")
         plt.show()
+        
 
     def plot_energy(self):
         for i in range(0,self.N):
             self.__move()
-        plt.plot(self.t, self.E_kin)
         plt.xlabel("$t(s)$")
         plt.ylabel("$E(J)$")
-        plt.plot(self.t, self.E_gp)
-        plt.plot(self.t, self.E_elp)
-        plt.plot(self.t, self.E)
+        plt.plot(self.t, self.E_kin, label='kinetička energija')
+        plt.plot(self.t, self.E_gp, label='gravitacijska energija')
+        plt.plot(self.t, self.E_elp, label='elastična energija')
+        plt.plot(self.t, self.E, label='ukupna energija')
+        plt.legend(framealpha=1, frameon=True)
         plt.show()
