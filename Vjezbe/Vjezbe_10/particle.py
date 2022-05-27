@@ -57,7 +57,7 @@ class Particle:
         #k_3vy = self.__ay(self.vx[-1]+(k_2vx/2), self.vy[-1]+(k_2vy/2)) * self.delta_t
         #k_3x = (self.vx[-1] + (k_2vx/2)) * self.delta_t
         #k_3y = (self.vy[-1] + (k_2vy/2)) * self.delta_t
-        k_3v = self.__a(self.v[-1] * (k_2v/2)) * self.dt
+        k_3v = self.__a(self.v[-1] + (k_2v/2)) * self.dt
         k_3r = (self.v[-1] + (k_2v/2)) * self.dt
 
         #k_4vx = self.__ax(self.vx[-1]+k_3vx, self.vy[-1]+k_3vy) * self.delta_t
@@ -71,7 +71,7 @@ class Particle:
 
         self.r.append(self.r[-1] + (k_1r + 2*k_2r + 2*k_3r + k_4r)/6)
     
-    def plot_trajectory(self, method='e'):
+    def evolve(self, method='e'):
         for i in self.t:
             if method=='e':
                 self.__move()
@@ -85,11 +85,3 @@ class Particle:
             self.x.append(i[0])
             self.y.append(i[1])
             self.z.append(i[2])
-
-        fig = plt.figure()
-        ax = fig.add_subplot(projection='3d')
-        ax.plot(self.x, self.y, self.z)
-        ax.set_xlabel('$x(m)$')
-        ax.set_ylabel('$y(m)$')
-        ax.set_zlabel('$z(m)$')
-        plt.show()
