@@ -1,15 +1,14 @@
 import numpy as np
 import matplotlib.pyplot as plt
-import universe
-import planet
+import universe  #triba prominit ime
 
-planet1 = planet.Planet()
-planet1.set_initial_conditions(1, [0,0], [0,5000])
+p1 = universe.Planet(1.989 * 10**(30), "Sunce") # Sunce
+p2 = universe.Planet(5.9742 * 10**(24), "Zemlja") # Zemlja
 
-planet2 = planet.Planet()
-planet2.set_initial_conditions(2, [10,0], [0,0])
+p1.set_initial_conditions([0,0], [0,0])
+p2.set_initial_conditions([1.496 * 10**(11), 0], [0, 29783])
 
-planeti = [planet1, planet2]
+planeti = [p1, p2]
 
 svemir = universe.Universe(planeti)
-svemir.plot_trajectory(0.01, 10)
+svemir.evolve(1000, 365.242*24*60*60)
